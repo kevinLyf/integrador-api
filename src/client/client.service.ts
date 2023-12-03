@@ -1,6 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { Client } from './client.model';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ClientService {
@@ -37,6 +38,18 @@ export class ClientService {
       throw new HttpException('Cpf already exists', HttpStatus.BAD_REQUEST);
 
     return this.prismaService.client.create({ data });
+  }
+
+  async edit(id: number, data: Client): Promise<Client> {
+    const client = await this.getById(id);
+
+    if (!client)
+      throw new HttpException('Client Not Found', HttpStatus.BAD_REQUEST);
+
+    return this.prismaService.client.update({
+      where: { id: id },
+      data: data as Prisma.ClientUpdateInput,
+    });
   }
 
   async delete(id: number): Promise<any> {

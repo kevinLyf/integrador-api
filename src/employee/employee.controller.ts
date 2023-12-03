@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Put,
   ParseIntPipe,
   Post,
 } from '@nestjs/common';
@@ -17,6 +18,14 @@ export class EmployeeController {
   @Get()
   async getAll(): Promise<Employee[]> {
     return this.employeeService.getAll();
+  }
+
+  @Put('/:id')
+  async edit(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: Employee,
+  ): Promise<Employee> {
+    return this.employeeService.edit(id, data);
   }
 
   @Post()

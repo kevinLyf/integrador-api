@@ -1,9 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { Prisma } from '@prisma/client';
-import { IsEmail, IsNotEmpty, IsNumber, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export class Employee implements Prisma.EmployeeCreateInput {
- 
   @IsString()
   @MinLength(3)
   name: string;
@@ -11,7 +16,7 @@ export class Employee implements Prisma.EmployeeCreateInput {
   @IsEmail()
   @IsNotEmpty()
   email: string;
-  
+
   @IsString()
   @IsNotEmpty()
   role: string;
