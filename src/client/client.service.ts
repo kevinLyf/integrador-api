@@ -7,7 +7,11 @@ export class ClientService {
   constructor(private prismaService: PrismaService) {}
 
   async getAll(): Promise<Client[]> {
-    return this.prismaService.client.findMany();
+    return this.prismaService.client.findMany({
+      include: {
+        orders: true,
+      },
+    }) as unknown as Client[];
   }
 
   async getById(id: number): Promise<Client> {
