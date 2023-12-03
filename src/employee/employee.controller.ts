@@ -4,11 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Put,
   ParseIntPipe,
   Post,
+  Put,
 } from '@nestjs/common';
-import { Employee } from './employee.model';
+import { Employee } from '@prisma/client';
 import { EmployeeService } from './employee.service';
 
 @Controller('employee')
@@ -34,7 +34,7 @@ export class EmployeeController {
   }
 
   @Delete('/:id')
-  async delete(@Param('id', ParseIntPipe) id: number): Promise<any> {
+  async delete(@Param('id', ParseIntPipe) id: number): Promise<Employee> {
     return this.employeeService.delete(id);
   }
 }

@@ -27,7 +27,7 @@ export class FinanceService {
     const finance = await this.getById(id);
 
     if (!finance)
-      throw new HttpException('Finance Not Found', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Finance not found', HttpStatus.BAD_REQUEST);
 
     return this.prismaService.finance.delete({ where: { id } });
   }
@@ -36,7 +36,7 @@ export class FinanceService {
     const finance = await this.getById(id);
 
     if (!finance)
-      throw new HttpException('Finance Not Found', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Finance not found', HttpStatus.BAD_REQUEST);
 
     return this.prismaService.finance.update({
       where: { id: id },

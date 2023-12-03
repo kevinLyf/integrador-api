@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Employee, Prisma } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
-import { Employee } from './employee.model';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class EmployeeService {
@@ -32,7 +31,7 @@ export class EmployeeService {
     const employee = await this.getById(id);
 
     if (!employee)
-      throw new HttpException('Employee Not Found', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Employee not found', HttpStatus.BAD_REQUEST);
 
     return this.prismaService.employee.update({
       where: { id: id },
@@ -44,7 +43,7 @@ export class EmployeeService {
     const employee = await this.getById(id);
 
     if (!employee)
-      throw new HttpException('Employee Not Found', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Employee not found', HttpStatus.BAD_REQUEST);
 
     return this.prismaService.employee.delete({
       where: { id },

@@ -1,7 +1,6 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Client, Prisma } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
-import { Client } from './client.model';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ClientService {
@@ -44,7 +43,7 @@ export class ClientService {
     const client = await this.getById(id);
 
     if (!client)
-      throw new HttpException('Client Not Found', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Client not found', HttpStatus.BAD_REQUEST);
 
     return this.prismaService.client.update({
       where: { id: id },

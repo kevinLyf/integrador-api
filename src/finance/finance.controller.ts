@@ -34,7 +34,7 @@ export class FinanceController {
   }
 
   @Delete('/:id')
-  async delete(@Param('id', ParseIntPipe) id: number): Promise<any> {
+  async delete(@Param('id', ParseIntPipe) id: number): Promise<Finance> {
     return this.financeService.delete(id);
   }
 }
